@@ -3,7 +3,7 @@ import { useContext, useRef, useState } from "react";
 import Image from "next/image";
 import OtpInput from "react-otp-input";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "@/context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const [otp, setOtp] = useState("");
@@ -12,11 +12,20 @@ const Login = () => {
   const {signIn} = useContext(AuthContext)
 
   const handleSubmit = () => {
-    if (!mailRef.current.value) {
-      return alert('Kindly enter your student mail to login')
+    if (!mailRef.current.value || !otp) {
+      return alert('Kindly fill all fields')
     }
-    alert(`OTP has been sent to your email ${mailRef.current?.value}`);
-    signIn()
+
+    if (otp.length !== 5) {
+      return alert('Otp needs to be five values')
+    }
+
+    let data = {
+      email: mailRef.current.value,
+      otp
+    }
+    // alert(`OTP has been sent to your email ${mailRef.current?.value}`);
+    signIn(data)
     // localStorage.setItem('isAuthenticated', 'true')
     router.push('/')
     
@@ -33,27 +42,26 @@ const Login = () => {
         </div>
         <div className="flex flex-col gap-3">
           <div className="w-96 flex flex-col gap-3">
-            <label
-              htmlFor="mail"
+            <h3
               className="text-[#323A46] font-semibold text-base"
             >
               Student Email
-            </label>
+            </h3>
             <input
               type="email"
               name="mail"
               id="mail"
               ref={mailRef}
+              autoFocus={true}
               className="ring-1 ring-[#5D5E5F] bg-[#F4F4F4] outline-none h-12 rounded-lg px-2"
             />
           </div>
           <div className="w-96 flex flex-col gap-3">
-            <label
-              htmlFor="otp"
+            <h3
               className="text-[#323A46] font-semibold text-base"
             >
               OTP
-            </label>
+            </h3>
             <OtpInput
               value={otp}
               onChange={setOtp}
@@ -82,10 +90,10 @@ const Login = () => {
       </div>
       <div className="flex-1 object-contain w-full h-[100%] flex relative">
         <Image
-          src={"/hero-img.png"}
+          src={"/vote.png"}
           alt="hero-img"
           fill={true}
-          className="object-cover"
+          className="object-contain"
         />
       </div>
     </main>

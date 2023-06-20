@@ -1,8 +1,8 @@
 "use client";
-import { AuthContext } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Home() {
   const { isAuthenticated } = useContext(AuthContext)
@@ -40,13 +40,13 @@ export default function Home() {
         </div>
       </div>
       <div className="flex-1 object-contain w-full h-[100%] flex relative">
-<Image src={'/hero-img.png'} alt="hero-img" fill={true} className="object-cover" />
+<Image src={'/hero-img.png'} alt="hero-img" fill={true} className="object-contain" />
       </div>
       </>}
 
       {isAuthenticated && <>
       <div className="flex flex-1 flex-col gap-5 pt-10">
-        <h1 className="text-[#181E4B] font-extrabold text-5xl w-full bg-white flex leading-tight">
+        <h1 className="text-[#181E4B] font-extrabold text-5xl w-full flex leading-tight">
           &quot;Your Voice,
           <br />
           Your Vote:
@@ -75,8 +75,8 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="flex-1 object-contain w-full h-[100%] flex relative">
-<Image src={'/hero-img.png'} alt="hero-img" fill={true} className="object-cover" />
+      <div className="flex-1 object-contain w-full h-[100%] flex relative pl-8">
+<Image src={'/hero-alt.png'} alt="hero-img" fill={true} className="object-cover" />
       </div>
       </>}
     </main>

@@ -1,20 +1,24 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "../context/AuthContext";
+import LogOutModal from './Modals/LogOutModal'
 
 const Navbar = () => {
-  const { isAuthenticated, signOut } = useContext(AuthContext);
+  const [show, setShow] = useState(false)
+  const { isAuthenticated, signOut, user } = useContext(AuthContext);
   const router = useRouter();
   const handleSubmit = () => {
-    signOut();
+    setShow(true)
+    // signOut();
     // localStorage.setItem('isAuthenticated', 'true')
-    router.push("/");
-    alert("Logged out successfully");
+    // router.push("/");
+    // alert("Logged out successfully");
   };
   return (
     <main className="flex items-center justify-between px-32 py-3">
+      {show && <LogOutModal setShow={setShow} />}
       <Link
         href={"/"}
         className="leading font-bold italic text-xl text-[#212832]"
@@ -23,34 +27,33 @@ const Navbar = () => {
       </Link>
       <nav className="flex gap-10 items-center">
         <ul className="flex gap-10 items-center">
+        {isAuthenticated 
+            &&
           <li>
             <Link
               href={"/candidates"}
-              className={`${
-                isAuthenticated ? "text-[#181818]" : "text-[#ACACAC]"
-              } font-semibold text-sm`}
-            >
+              className="text-[#181818] font-semibold text-sm"
+              >
               Candidates
             </Link>
           </li>
+            }
+          {(!isAuthenticated === (user?.voted === true))
+            &&
           <li>
             <Link
               href={"/vote"}
-              hidden={!isAuthenticated}
-              className={`${
-                isAuthenticated ? "text-[#181818]" : "text-[#ACACAC]"
-              } font-semibold text-sm`}
-            >
+              className="text-[#181818] font-semibold text-sm"
+              >
               Vote
             </Link>
           </li>
+            }
           <li>
             <Link
               href={"/results"}
-              hidden={!isAuthenticated}
-              className={`${
-                isAuthenticated ? "text-[#181818]" : "text-[#ACACAC]"
-              } font-semibold text-sm`}
+              className="text-[#181818] font-semibold text-sm"
+
             >
               Results
             </Link>
