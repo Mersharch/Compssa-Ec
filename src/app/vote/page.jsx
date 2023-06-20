@@ -42,7 +42,7 @@ const Vote = () => {
       <hr className="h-2 bg-gray-300" />
       {data && console.log(data[0].candidates[0].id)}
       {data && (
-        <div className="flex-1 flex flex-col gap-10">
+        <div className="flex-1 flex flex-col gap-10 pb-4">
           {data.map((item, index) => {
             return (
               <div
@@ -52,7 +52,7 @@ const Vote = () => {
                 <h3 className="text-[#181E4B] font-semibold text-2xl w-full leading-tight text-center">
                   {item.position}
                 </h3>
-                <div>
+                <div className='flex flex-row items-center justify-evenly w-full'>
                   {Object.keys(item.candidates).map((lb, index) => {
                     return (
                       <div key={index} className="flex flex-col items-center space-y-4" onClick={() => alert(item.candidates[lb].name)}>
@@ -63,7 +63,7 @@ const Vote = () => {
                           width={100}
                           height={100}
                           alt="Candidate-Image"
-                          className="w-40 h-40 rounded-xl object-fill"
+                          className="w-40 h-40 rounded-xl"
                           />
                           <div className='w-40 h-40 bg-[#9F9F9F] rounded-xl absolute right-0 top-0 opacity-0 hover:opacity-50'></div>
                           </div>
@@ -75,6 +75,7 @@ const Vote = () => {
               </div>
             );
           })}
+          <button className='w-32 py-2 flex flex-row items-center justify-center text-white self-center bg-[#1E1BBE] rounded-md'>Submit Votes</button>
         </div>
       )}
     </main>

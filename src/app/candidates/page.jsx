@@ -48,7 +48,7 @@ const Candidates = () => {
                 <h3 className="text-[#181E4B] font-semibold text-2xl w-full leading-tight text-center">
                   {item.position}
                 </h3>
-                <div>
+                <div className="flex flex-row items-center justify-evenly w-full">
                   {Object.keys(item.candidates).map((lb, index) => {
                     return (
                       <div key={index} className="flex flex-col items-center space-y-4">
@@ -57,7 +57,7 @@ const Candidates = () => {
                           width={100}
                           height={100}
                           alt="Candidate-Image"
-                          className="w-40 h-40 rounded-xl object-fill bg-black"
+                          className="w-40 h-40 rounded-xl"
                         />
                         <h3 className="text-slate-600 text-lg font-medium italic">{item.candidates[lb].name}</h3>
                       </div>
