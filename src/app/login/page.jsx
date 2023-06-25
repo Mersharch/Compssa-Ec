@@ -15,10 +15,17 @@ const Login = () => {
   const handleSubmit = async () => {
     setLoading('Logging in...')
     if (!mailRef.current.value || !otp) {
+      setLoading('Login')
       return alert('Kindly fill all fields')
     }
 
+    if (!mailRef.current.value.includes("@st.ug.edu.gh")) {
+      setLoading('Login')
+      return alert("Kindly log in using your student email")
+    }
+
     if (otp.length !== 5) {
+      setLoading('Login')
       return alert('Otp needs to be five values')
     }
 
@@ -31,7 +38,7 @@ const Login = () => {
     // localStorage.setItem('isAuthenticated', 'true')
     if (!res.success) {
       console.log(res.error)
-      alert("There was a problem logging you in. Kindly check your internet connection or credentials")
+      return alert("There was a problem logging you in. Kindly check your internet connection or credentials")
     }
     setLoading('Logged In')
     router.push('/')

@@ -20,7 +20,10 @@ export const AuthProvider = ({ children }) => {
       })
       const res = await response.json()
       console.log('type: ', typeof res)
-        console.log('res: ', res)
+      console.log('res: ', res)
+      if (res.auth_error) {
+        throw new Error(res.auth_error)
+      }
         setUser({ email: res.user, otp: res.otp, voted:res.voted })
         setToken(res.token)
       setIsAuthenticated(true)
