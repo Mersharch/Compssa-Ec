@@ -99,7 +99,7 @@ const Login = () => {
           src={"/vote.png"}
           alt="hero-img"
           fill={true}
-          className="object-contain"
+          className="object-contain img-anim"
         />
       </div>
     </main>

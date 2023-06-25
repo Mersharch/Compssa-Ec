@@ -26,7 +26,7 @@ ChartJS.register(
     BarElement
 )
 
-const Vote = () => {
+const Results = () => {
   const { token } = useContext(AuthContext);
     const [data, setData] = useState();
     const [d,setD] = useState({
@@ -123,7 +123,7 @@ const Vote = () => {
   );
 };
 
-export default Vote;
+export default Results;
 
 
 

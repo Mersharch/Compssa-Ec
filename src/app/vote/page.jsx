@@ -13,7 +13,7 @@ const Vote = () => {
   const [data, setData] = useState();
   const [choices, setChoices] = useState([]);
   const [voted, setVoted] = useState(false);
-  const [loading, setLoading] = useState('Submit Votes');
+  const [loading, setLoading] = useState("Submit Votes");
 
   const handleChoice = (index, choice) => {
     setChoices((prevArray) => {
@@ -69,12 +69,15 @@ const Vote = () => {
                     return (
                       <div
                         key={item.candidates[lb].id}
-                        className="flex flex-col focus-within:p-1 focus-within:ring-1 focus-within:rounded-xl focus-within:ring-blue-500 focus-within:ease-in-out focus-within:duration-500 items-center space-y-4"
+                        className="flex flex-col items-center space-y-4"
                         onClick={() =>
                           handleChoice(index, item.candidates[lb].id)
                         }
                       >
-                        <div className="relative">
+                        <div
+                          tabIndex={item.candidates[lb].id}
+                          className="relative focus:p-1 focus:ring-1 focus:rounded-xl focus:ring-blue-500 focus:ease-in-out focus:duration-500"
+                        >
                           <Image
                             src={item.candidates[lb].image}
                             width={100}
@@ -96,20 +99,21 @@ const Vote = () => {
           })}
           <button
             onClick={async () => {
-              setLoading('Submitting your votes...')
+              setLoading("Submitting your votes...");
               if (choices.length < data.length) {
-                setLoading('Submit Votes')
-                return alert("Please make a vote for every position")
-                
+                setLoading("Submit Votes");
+                return alert("Please make a vote for every position");
               }
-              const response = await vote({ candidates: [...choices] })
+              const response = await vote({ candidates: [...choices] });
               if (!response.success) {
-                console.log(response.error)
-                alert("There was a problem submitting your votes. Kindly check your internet connection or retry submitting")
+                console.log(response.error);
+                alert(
+                  "There was a problem submitting your votes. Kindly check your internet connection or retry submitting"
+                );
               }
-              setLoading(res.message || "Votes Submitted")
-              setChoices([])
-              setVoted(true)
+              setLoading(res.message || "Votes Submitted");
+              setChoices([]);
+              setVoted(true);
             }}
             className="w-32 py-2 flex flex-row items-center justify-center text-white self-center bg-[#1E1BBE] rounded-md"
           >

@@ -26,3 +26,20 @@ html {
   background-position-x:1rem 0 0 0;
   /* Additional background properties can be added here */
 }
+
+/* animate the image to move up and down */
+.img-anim {
+  animation: move 2.5s linear infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
