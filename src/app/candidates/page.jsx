@@ -48,7 +48,7 @@ const Candidates = () => {
                 <h3 className="text-[#181E4B] font-semibold text-2xl w-full leading-tight text-center">
                   {item.position}
                 </h3>
-                <div className="flex flex-row items-center justify-evenly w-full">
+                <div className="flex flex-row items-center justify-center gap-14 w-full">
                   {Object.keys(item.candidates).map((lb, index) => {
                     return (
                       <div key={index} className="flex flex-col items-center space-y-4">

@@ -24,11 +24,44 @@ export const AuthProvider = ({ children }) => {
         setUser({ email: res.user, otp: res.otp, voted:res.voted })
         setToken(res.token)
       setIsAuthenticated(true)
+      return {
+        success:true
+      }
         
     } catch (error) {
-      console.log(error);
+      return {
+        success: false,
+        error:error.message
+      }
     }
   };
+
+  const vote = async (data) => {
+    try {
+      const response = await fetch('https://dcsvoting.pythonanywhere.com/api/v1/vote/',{
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          }
+      })
+      const res = await response.json()
+        console.log('res: ', res)
+        setUser({ ...user, voted:true })
+      return {
+        success: true,
+        message:res.message
+      }
+        
+    } catch (error) {
+      return {
+        success: false,
+        error:error.message
+      }
+    }
+  };
+
   const signOut = () => {
     setIsAuthenticated(false)
     setToken('')
@@ -36,7 +69,7 @@ export const AuthProvider = ({ children }) => {
     router.push('/')
   };
   return (
-    <AuthContext.Provider value={{ isAuthenticated, signIn, signOut, token }}>
+    <AuthContext.Provider value={{ isAuthenticated, signIn, signOut, token, vote }}>
       {children}
     </AuthContext.Provider>
   );

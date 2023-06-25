@@ -7,11 +7,13 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState("Login");
   const mailRef = useRef();
   const router = useRouter();
   const {signIn} = useContext(AuthContext)
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    setLoading('Logging in...')
     if (!mailRef.current.value || !otp) {
       return alert('Kindly fill all fields')
     }
@@ -25,10 +27,14 @@ const Login = () => {
       otp
     }
     // alert(`OTP has been sent to your email ${mailRef.current?.value}`);
-    signIn(data)
+    const res = await signIn(data)
     // localStorage.setItem('isAuthenticated', 'true')
+    if (!res.success) {
+      console.log(res.error)
+      alert("There was a problem logging you in. Kindly check your internet connection or credentials")
+    }
+    setLoading('Logged In')
     router.push('/')
-    
   };
 
   return (
@@ -85,7 +91,7 @@ const Login = () => {
           </div>
         </div>
         <button onClick={handleSubmit} className="flex flex-row items-center justify-center w-full h-10 bg-[#3568FF] text-white rounded-lg">
-          Login
+         { loading}
         </button>
       </div>
       <div className="flex-1 object-contain w-full h-[100%] flex relative">

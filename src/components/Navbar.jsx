@@ -38,7 +38,7 @@ const Navbar = () => {
             </Link>
           </li>
             }
-          {(!isAuthenticated === (user?.voted === true))
+          {(user?.voted === false) && isAuthenticated
             &&
           <li>
             <Link
