@@ -11,10 +11,6 @@ const Navbar = () => {
   const router = useRouter();
   const handleSubmit = () => {
     setShow(true)
-    // signOut();
-    // localStorage.setItem('isAuthenticated', 'true')
-    // router.push("/");
-    // alert("Logged out successfully");
   };
   return (
     <main className="flex items-center justify-between px-32 py-3">

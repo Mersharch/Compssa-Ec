@@ -4,6 +4,8 @@ import Image from "next/image";
 import OtpInput from "react-otp-input";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "../../context/AuthContext";
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [otp, setOtp] = useState("");
@@ -16,30 +18,30 @@ const Login = () => {
     setLoading('Logging in...')
     if (!mailRef.current.value || !otp) {
       setLoading('Login')
-      return alert('Kindly fill all fields')
+      return toast.warn('Kindly fill all fields')
     }
 
     if (!mailRef.current.value.includes("@st.ug.edu.gh")) {
       setLoading('Login')
-      return alert("Kindly log in using your student email")
+      return toast.warn("Kindly log in using your student email")
     }
 
     if (otp.length !== 5) {
       setLoading('Login')
-      return alert('Otp needs to be five values')
+      return toast.warn('Otp needs to be five values')
     }
 
     let data = {
       email: mailRef.current.value,
       otp
     }
-    // alert(`OTP has been sent to your email ${mailRef.current?.value}`);
     const res = await signIn(data)
-    // localStorage.setItem('isAuthenticated', 'true')
     if (!res.success) {
       console.log(res.error)
-      return alert("There was a problem logging you in. Kindly check your internet connection or credentials")
+      setLoading("Login")
+      return toast.error("There was a problem logging you in. Kindly check your internet connection or credentials")
     }
+    toast.success("Login Successfully")
     setLoading('Logged In')
     router.push('/')
   };

@@ -102,12 +102,12 @@ const Vote = () => {
               setLoading("Submitting your votes...");
               if (choices.length < data.length) {
                 setLoading("Submit Votes");
-                return alert("Please make a vote for every position");
+                return toast.warn("Please make a vote for every position");
               }
               const response = await vote({ candidates: [...choices] });
               if (!response.success) {
                 console.log(response.error);
-                alert(
+                toast.error(
                   "There was a problem submitting your votes. Kindly check your internet connection or retry submitting"
                 );
               }
