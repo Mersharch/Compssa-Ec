@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       if (res.auth_error) {
         throw new Error(res.auth_error)
       }
-        setUser({ email: res.user, otp: res.otp, voted:res.voted })
+        setUser({ email: res.user, voted:res.voted })
         setToken(res.token)
       setIsAuthenticated(true)
       return {
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     router.push('/')
   };
   return (
-    <AuthContext.Provider value={{ isAuthenticated, signIn, signOut, token, vote }}>
+    <AuthContext.Provider value={{ isAuthenticated, signIn, signOut, token, vote, user }}>
       {children}
     </AuthContext.Provider>
   );
