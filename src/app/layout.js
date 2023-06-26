@@ -32,7 +32,7 @@ rtl={false}
 pauseOnFocusLoss
 draggable
 pauseOnHover
-        theme="dark"
+        theme="light"
         
 />
         </AuthProvider>
