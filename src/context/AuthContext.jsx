@@ -51,7 +51,12 @@ export const AuthProvider = ({ children }) => {
           }
       })
       const res = await response.json()
-        console.log('res: ', res)
+      console.log('res: ', res)
+      if (res.auth_error) {
+        throw new Error(res.auth_error)
+      }
+      if (res.otp) {
+console.log(typeof res.otp);      }
         setUser({ ...user, voted:true })
       return {
         success: true,

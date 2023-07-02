@@ -26,6 +26,7 @@ const Login = () => {
       return toast.warn("Kindly log in using your student email")
     }
 
+    
     if (otp.length !== 5) {
       setLoading('Login')
       return toast.warn('Otp needs to be five values')
@@ -47,18 +48,18 @@ const Login = () => {
   };
 
   return (
-    <main className="w-full flex px-32 flex-1 py-5 gap-44 items-center">
-      <div className="w-96 flex flex-col h-max justify-center gap-10">
-        <div className="flex flex-col gap-3">
-          <h1 className="font-bold text-4xl">Hey there,</h1>
-          <h3 className="text-[#7E8B9E] font-medium text-lg">
+    <main className="w-full px-10 flex flex-1 flex-row py-5 md:gap-5 md:items-center justify-center xl:pl-40">
+      <div className="w-96 flex flex-col justify-center gap-5">
+        <div className="flex flex-col gap-5">
+          <h1 className="font-bold text-4xl lg:text-5xl text-center">Hey there,</h1>
+          <h3 className="text-[#7E8B9E] font-medium text-lg lg:text-2xl text-center">
             Login and choose your candidate
           </h3>
         </div>
-        <div className="flex flex-col gap-3">
-          <div className="w-96 flex flex-col gap-3">
+        <div className="flex flex-col gap-5 w-full">
+          <div className="w-full flex flex-col gap-3">
             <h3
-              className="text-[#323A46] font-semibold text-base"
+              className="text-[#323A46] font-semibold text-base lg:text-lg"
             >
               Student Email
             </h3>
@@ -68,12 +69,12 @@ const Login = () => {
               id="mail"
               ref={mailRef}
               autoFocus={true}
-              className="ring-1 ring-[#5D5E5F] bg-[#F4F4F4] outline-none h-12 rounded-lg px-2"
+              className="ring-1 ring-[#5D5E5F] bg-[#F4F4F4] w-full outline-none h-12 rounded-lg px-2"
             />
           </div>
-          <div className="w-96 flex flex-col gap-3">
+          <div className="w-full flex flex-col gap-3">
             <h3
-              className="text-[#323A46] font-semibold text-base"
+              className="text-[#323A46] font-semibold text-base lg:text-lg"
             >
               OTP
             </h3>
@@ -99,11 +100,14 @@ const Login = () => {
             />
           </div>
         </div>
+        
+
         <button onClick={handleSubmit} className="flex flex-row items-center justify-center w-full h-10 bg-[#3568FF] text-white rounded-lg">
+
          { loading}
         </button>
       </div>
-      <div className="flex-1 object-contain w-full h-[100%] flex relative">
+      <div className="md:flex-1 object-contain w-full h-full md:flex relative hidden">
         <Image
           src={"/vote.png"}
           alt="hero-img"

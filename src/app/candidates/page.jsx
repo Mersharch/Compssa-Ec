@@ -31,14 +31,13 @@ const Candidates = () => {
     getCandidates();
   }, []);
   return (
-    <main className="flex-1 flex flex-col pt-7 gap-5">
-      <h1 className="text-[#181E4B] font-extrabold text-3xl w-full leading-tight text-center">
+    <main className="flex-1 w-full flex flex-col pt-7 gap-5">
+      <h1 className="text-[#181E4B] font-extrabold text-3xl w-full leading-tight text-center ">
         Candidates
       </h1>
       <hr className="h-2 bg-gray-300" />
-      {data && console.log(data[0].candidates[0].id)}
       {data && (
-        <div className="flex-1 flex flex-col gap-10">
+        <div className="flex-1 w-full flex flex-col gap-10">
           {data.map((item, index) => {
             return (
               <div
@@ -48,18 +47,23 @@ const Candidates = () => {
                 <h3 className="text-[#181E4B] font-semibold text-2xl w-full leading-tight text-center">
                   {item.position}
                 </h3>
-                <div className="flex flex-row items-center justify-center gap-14 w-full">
+                <div className="flex flex-row items-center justify-center gap-14 w-full  flex-wrap">
                   {Object.keys(item.candidates).map((lb, index) => {
                     return (
-                      <div key={index} className="flex flex-col items-center space-y-4">
+                      <div
+                        key={index}
+                        className="flex flex-col items-center space-y-4"
+                      >
                         <Image
-                          src={item.candidates[lb].image }
+                          src={item.candidates[lb].image}
                           width={100}
                           height={100}
                           alt="Candidate-Image"
-                          className="w-40 h-40 rounded-xl"
+                          className="w-40 h-40 rounded-xl object-cover"
                         />
-                        <h3 className="text-slate-600 text-lg font-medium italic">{item.candidates[lb].name}</h3>
+                        <h3 className="text-slate-600 text-lg font-medium italic">
+                          {item.candidates[lb].name}
+                        </h3>
                       </div>
                     );
                   })}

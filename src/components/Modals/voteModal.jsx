@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useRouter } from "next/navigation";
+import Modal from "@mui/material/Modal";
 
-const VoteModal = ({ setShow }) => {
+
+const VoteModal = ({ show }) => {
   const router = useRouter()
   return (
-    <main className="absolute right-0 top-0 w-screen h-screen bg-black bg-opacity-70 z-10 flex items-center justify-center">
+<Modal
+      open={show}
+      className="flex flex-row items-center justify-center"
+    >
       <div className="custom-bg w-[480px] rounded-2xl flex flex-col items-center px-5 py-5 justify-center space-y-5">
         <h3 className="text-[#284DD2] font-bold text-3xl">Thank You!!</h3>
         <p className="text-[#2D2C2C] font-semibold text-lg text-center">
@@ -27,7 +32,7 @@ const VoteModal = ({ setShow }) => {
           </button>
         </div>
       </div>
-    </main>
+    </Modal>
   );
 };
 

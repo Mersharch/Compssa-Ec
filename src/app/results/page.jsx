@@ -17,7 +17,6 @@ import {
     BarElement
 } from 'chart.js';
 import { Bar } from "react-chartjs-2";
-import { ClipLoader } from 'react-spinners';
 
 ChartJS.register(
     Tooltip,
@@ -44,7 +43,7 @@ const Results = () => {
 
   return (
     <main className="w-full h-screen flex flex-col pt-7 gap-5 relative">
-      <h1 className="text-[#181E4B] font-extrabold text-3xl w-full leading-tight text-center">
+      <h1 className="text-[#181E4B] font-extrabold text-3xl w-full leading-tight text-center ">
         The results are here!! These are your new executives
       </h1>
       <hr className="h-2 bg-gray-300" />
@@ -58,14 +57,14 @@ const Results = () => {
         <h3 className="text-[#8B8B8B] font-semibold text-4xl">voting is not yet over</h3>
       </div>}
       {data && 
-        <div className="flex-1 w-scree pb-10 self-center grid-cols-2 gap-10 grid items-center justify-items-center">
+        <div className="flex-1 w-full flex flex-row flex-wrap pb-10 gap-10  items-center justify-items-center">
           {data.map((item, index) => {
             return (
-          <div className="flex flex-col items-center w-max gap-4" key={index}>
-          <h3 className="text-[#181E4B] font-semibold text-2xl w-full leading-tight text-center">
+          <div className="flex flex-col items-center w-full gap-4" key={index}>
+          <h3 className="text-[#181E4B] font-semibold text-2xl w-full leading-tight text-center ">
           COMPSSA {item.position.toUpperCase()}
         </h3>
-              <div className="flex flex-row w-[550px] items-center justify-center px-10 h-72 ring-1 ring-slate-300 py-4 bg-white">
+              <div className="flex flex-row items-center justify-center px-10 h-72 ring-1 ring-slate-300 py-4 bg-white">
                   
       <Bar data={item.data} options={options} className="w-full" />
               </div>

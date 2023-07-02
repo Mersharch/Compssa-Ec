@@ -48,7 +48,7 @@ const Vote = () => {
   }, []);
   return (
     <main className="w-full h-screen flex flex-col pt-7 gap-5 relative">
-      {voted && <VoteModal />}
+      {voted && <VoteModal show={show} />}
       <h1 className="text-[#181E4B] font-extrabold text-3xl w-full leading-tight text-center">
         Vote for your preferred Candidates
       </h1>
@@ -64,7 +64,7 @@ const Vote = () => {
                 <h3 className="text-[#181E4B] font-semibold text-2xl w-full leading-tight text-center">
                   {item.position}
                 </h3>
-                <div className="flex flex-row items-center justify-center gap-14 w-full">
+                <div className="flex flex-row items-center justify-center gap-14 w-full flex-wrap">
                   {Object.keys(item.candidates).map((lb) => {
                     return (
                       <div
@@ -76,14 +76,14 @@ const Vote = () => {
                       >
                         <div
                           tabIndex={item.candidates[lb].id}
-                          className="relative focus:p-1 focus:ring-1 focus:rounded-xl focus:ring-blue-500 focus:ease-in-out focus:duration-500"
+                          className="relative  focus:ring-4 focus:rounded-xl focus:ring-blue-500 focus:ease-in-out focus:duration-500"
                         >
                           <Image
                             src={item.candidates[lb].image}
                             width={100}
                             height={100}
                             alt="Candidate-Image"
-                            className="w-40 h-40 rounded-xl"
+                            className="w-40 h-40 rounded-xl object-cover"
                           />
                           <div className="w-40 h-40 bg-[#9F9F9F] rounded-xl absolute right-0 top-0 opacity-0 hover:opacity-50"></div>
                         </div>
